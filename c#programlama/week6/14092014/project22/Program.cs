@@ -60,6 +60,6 @@ class Program
     static void Main(string[] args)
     {
         ElektirikliOtomobil elektirikliOtomobil1=new ElektirikliOtomobil();
-        elektirikliOtomobil1.Marka();
+        elektirikliOtomobil1.Marka
     }
 }
