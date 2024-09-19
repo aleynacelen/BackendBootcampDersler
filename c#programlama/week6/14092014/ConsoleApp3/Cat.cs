@@ -10,5 +10,11 @@ public class Cat:Animal
     }
 
     public string Renk { get; set; }
+    public override void MakeSound()
+    {
+        base.MakeSound();
+        System.Console.WriteLine($"{Name}miyavladı");
+    }
+
 
 }

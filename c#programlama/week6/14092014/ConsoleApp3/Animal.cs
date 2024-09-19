@@ -13,9 +13,10 @@ public class Animal
     public string Name { get; set; }
     public int Age { get; set; }
 
-    public void MakeSound()
+    public virtual void MakeSound()
     {
-        System.Console.WriteLine($"{Name}ses çıkardı");
+        System.Console.WriteLine($"{Name}ses çıkardı");//virtual methodu istenirse eğer method miras verildiği noktada geçersiz kıllınabılır
+        
     }
     
 
