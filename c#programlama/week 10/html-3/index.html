@@ -5,108 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kişisel web sitesi</title>
-    <style>
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
+    <link rel="stylesheet" href="/css/style.css">
 
-        body {
-            background-color: #ECCEAE;
-            font-family: 'Courier New';
-            color: #555;
-            font-size: 18px;
-
-        }
-
-        #Header {
-            text-align: center;
-            background-color: #54239d8e;
-            color: #3d1937;
-            padding: 20px 40px;
-            border-radius: 15%;
-            box-shadow: 50px 5px 20px rgb(5, 11, 63);
-
-
-
-            /* padding-top :20px;
-            padding-bottom: 20px;
-            /* padding-right: 20px; */
-            /* padding: 20px; */
-
-        }
-
-        h1 {
-            font-size: 40px;
-        }
-
-        h2 {
-            font-size: 36px;
-
-        }
-
-        #About,
-        #links,
-        #Skills,
-        #profilePicture,
-        #concat 
-        {
-            margin: 20px;
-            padding: 20px;
-            background-color: rgba(157, 17, 108, 0.592);
-
-            border-radius: 30px;
-            box-shadow: 50px 5px 20px rgba(17, 7, 69, 0.395);
-        }
-
-        #skillsContainer {
-            list-style-type: none;
-
-        }
-
-        .Skills {
-            margin-bottom: 5px;
-            margin-top: 5px;
-
-        }
-
-        #links {
-            text-decoration: none;
-            color: #351717;
-
-
-        }
-
-        #links a:hover {
-            color: #131842;
-
-        }
-
-        #profilePicture img {
-            border-radius: 100px;
-
-        }
-
-
-        #concat input [type="submit"]:hover {
-            background-color: #371414;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            transition: background-color.3s;
-        }
-
-
-
-
-
-
-
-
-
-
-
-    </style>
 </head>
 
 <body>
@@ -124,14 +24,16 @@
             <div id="Skills">
                 <h2>Yetenekler</h2>
 
-                <ul>
-                    <li>HTLM</li>
-                    <li>CSS</li>
-                    <li>JavaScp</li>
-                    <li>React</li>
-                    <li>AspnetCore mvp</li>
-                    <li>ApnetCore API</li>
-                </ul>
+                <div id="skillsContainer">
+                    <div class="skill">HTML</div>
+                    <div class="skill">CSS</div>
+                    <div class="skill">Java</div>
+                    <div class="skill">C#</div>
+                    <div class="skill">API</div>
+                    <div class="skill">NodeJs</div>
+                            
+                </div>
+            </div>
                 <div id="links">
                     <!--Bağlantılar-->
                     <h2>Benimle bağlantı kurun!</h2>
@@ -140,10 +42,12 @@
                         <div>
                             <a href="https://www.linkedn.com" target="_blank">Linkedn</a>
                         </div>
+                        
                         <div id="profilePicture">
                             <h2>Profil Fotoğrafı</h2>
                             <!--img src="https://placehold.co/200" alt=""-->
                             <img src="https://picsum.photos/id/37/250/250" alt="">
+                            </div>
                             <!-- İletişim Bölümü -->
                             <div id:concat>
 
@@ -163,16 +67,17 @@
                                         <textarea></textarea>
 
                                     </div>
+                                    
                                     <div>
                                         <input type="submit" value=" Mesajı Gönder">
                                     </div>
-                            </div>
+                            
 
-                        </div>
-                    </div>
-                </div>
+                        
+                    
+                
 
-            </div>
+            
 </body>
 
 
