@@ -166,6 +166,7 @@ SELECT
     OgrenciID, KitapAdi, DergiId, DVDiD
 FROM OduncAlmalar
     LEFT JOIN Kitaplar ON OduncAlmalar.KitapId=Kitaplar.KitapId;
+    
 
     
 
