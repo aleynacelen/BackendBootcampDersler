@@ -1,0 +1,111 @@
+><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olaylar</title>
+</head>
+<body>
+    <h1>events</h1>
+    <div>
+        <button onclick="changeColor('red','white')">Kırmızı/Beyaz</button>
+    </div>
+    <div>
+        <button onmousemove="changeColor('black','yellow')">
+            siyah/sarı
+        </button>
+    </div>
+    <div>
+        <button onmouseout="changeColor('blue','yellow')">Lacivet/Sarı</button>
+    </div>
+    <div>
+        <button ondblclick="changeColor('purple','white')">Mor/Beyaz</button>
+    </div>=
+    <form name = "gender" action="">
+        <input type="radio" name=""genderRadio checked > Erkek
+        <input type="radio" name="" genderRadio > Kadın
+        <div>
+            <input type="button" value="Seçim Yap" onclick="showStatus()">
+        </div>
+
+        <div>
+            <input type="text">
+        </div>
+    </form>
+    <form action="">
+        <div>
+            <label for="">Ad:</label>
+            <input type="text" onfocus="this.placeholder='Adınızı giriniz'"onblur="this.placeholder=' '">
+            
+            <div>
+                <label for="">Soyad:</label>
+            <input type="text" onfocus="this.placeholder='Soyad giriniz'"onblur="this.placeholder=' '">
+        </div>
+            
+        </div>
+    </form>
+    <form action="">
+        <select onchange="go(this)">
+            <option value="">Bir arama motoru seçiniz</option>
+            <option value="https://www.google.com">google</option>
+            <option value="https://www.yandex.com">yandex</option>
+            <option value="https://www.yahoo.com">yahoo</option>
+            <option value="https://www.ybing.com">bing</option>
+        </select>
+    </form>
+    <div id="content">
+        <h1 id="title-about">About</h1>
+        <p id = "about" style="display: none;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga at a perferendis accusantium quos, consequuntur ducimus voluptatibus dolorem minima, voluptas adipisci illum ipsum enim rerum. Tempore veritatis quisquam earum quasi ullam sequi repudiandae quae necessitatibus velit suscipit? Error officiis repellendus voluptatibus corporis cum exercitationem! Voluptatum dolorum laboriosam autem mollitia non.</p>
+    </div>
+    <script >
+        const about = document.getElementById('about');
+        about.addEventListener('click',function(){
+          alert('Tıklandı') 
+          
+        })
+            console.log(about)
+
+        function changeColor(bg,fg)
+        {
+            document.bgColor=bg;
+            document.fgColor=fg;
+
+        }
+
+        function showStatus()
+        {
+            let message='';
+            if(console.log(document.gender.genderRadio[0].checked))
+            {
+                message='KADIN'
+
+            }else
+            {
+                message='ERKEK'
+
+            }
+            alert(`sonuç.=> ${message}`);
+
+            function go(element){
+                const selectedOption = element.selectedOption
+                console.log(element.options[selectedOption])
+                location.href=address;
+
+                if(confirm('sitemizden ayrılıyorsun')){
+                    location.href=address;
+                }
+            }
+
+
+
+        }
+    </script>
+
+
+    
+
+
+
+
+</body>
+</html>

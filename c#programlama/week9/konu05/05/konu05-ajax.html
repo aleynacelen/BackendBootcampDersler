@@ -1,0 +1,51 @@
+><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+</head>
+<body>
+    <!-- ajax bir tekniğin adı -->
+
+
+    <form action="">
+        <label for="">Ad Soyad:</label>
+        <input type="text">
+        <input type="submint" value="Gönder">
+    </form>
+    <hr>
+    <input type="button"value="ajax ile veri getir">
+    <p id ="ajax-content" style="border:1px soild red">
+
+    </p>
+    <h1>AJAX</h1>
+    <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus in consequatur fugiat, quae sint non ut voluptate, et perspiciatis explicabo, ullam incidunt ab officiis deserunt!</P>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+ 
+    <ul>
+        <li>prop1</li>
+        <li>prop2</li>
+        <li>prop3</li>
+        <li>prop4</li>
+    </ul>
+    <a href="" class="hred"></a>
+
+    <script>
+        $(document).ready(function(){
+            $('#get-data').click(function(){
+                $.ajax({
+                    url:'ajax_content.txt',
+                    success:function(content){
+                        $('#ajax-content').append(content);
+
+                    }
+                })
+            })
+        })
+    </script>
+
+
+    
+</body>
+</html>

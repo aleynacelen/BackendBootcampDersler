@@ -1,0 +1,57 @@
+><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+   <h1>jQuary Seçiciler</h1>
+   <p>hızlı performanslı kod yazdırır!!!!</p>
+   <h2>jQuary nasıl eklenir </h2>
+   <ol>
+    <li>jQuary dosyasını indir proje klosörüne koyarak</li>
+    <li>CDN linki kullanarak</li>
+
+
+   </ol>
+   <h2 id ="title">Id'ye göre seçme :) </h2>
+   <p id="message" class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non molestiae saepe, libero sed consequatur impedit ipsam! Nihil tempore dicta repellat harum, nesciunt qui debitis accusamus illo dolor veniam at nostrum.</p>
+   <p class="message">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur repudiandae quaerat rem repellat, voluptate pariatur veritatis, adipisci aliquid fugit eveniet praesentium numquam sint, aspernatur corporis facere omnis neque voluptatibus. Beatae dolore rem consectetur vel aliquam culpa! Distinctio, sapiente rem ducimus commodi cupiditate a nisi, delectus magni corporis possimus tempore placeat, sequi nostrum molestias ipsa eum dicta beatae. Necessitatibus aliquam, vero beatae deserunt nulla consequuntur cumque ad aspernatur maxime, iusto reprehenderit repellat esse porro corporis ipsum repellendus impedit sapiente pariatur voluptates quibusdam magnam earum. Ex, quia. Cumque debitis tempora id iste sit necessitatibus deleniti fugit atque rem quo neque, deserunt amet!</p>
+   <h2 id="title">Deneme</h2>
+   
+
+
+
+
+
+
+    <script src ="/jquery-3.7.1.js"></script>
+
+    <script>
+        $('div').text('Yeni metin')
+        $('titel').text('jquary kullanarak id seçme')
+        $('#message').text('Yeni MESAJ')
+        $('.message').text('Bunu da class ile seçtik')
+        console.log($('.message'));
+        console.log($'')
+
+
+
+    </script>
+
+     <script>
+        $(document).ready(function(){
+            const psj1= document.getElementById('değiştir-js');
+                // psjq1.text('bu da jquery ile depişti');
+                // pjs!.innerHTML='<div ''
+                
+                const içerik1= document.querySelectorAll('#içerik-al-js')
+                alert(içerik1.innerText)
+                const içerik2=
+            
+        });
+     </script>
+</body>
+</html>
