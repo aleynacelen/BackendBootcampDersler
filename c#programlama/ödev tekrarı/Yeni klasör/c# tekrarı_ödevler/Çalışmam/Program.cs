@@ -1,4 +1,8 @@
-﻿using System.Reflection;
+﻿using System.ComponentModel;
+using System.Data.Common;
+using System.Net;
+using System.Net.Http.Headers;
+using System.Reflection;
 using System.Text.Json.Serialization.Metadata;
 
 namespace Çalışmam;
@@ -259,34 +263,372 @@ class Program
         //         break;
         // }
 
-        System.Console.WriteLine("Bir harf giriniz");
-        char harf = Convert.ToChar(Console.ReadLine());
-         harf = char.ToLower(harf);
-        switch(harf){
-            case 'a':
-            case 'b':
-            case 'C':
-        
-            System.Console.WriteLine('sesli harf');
-            break;
-            default:
-            System.Console.WriteLine("sesiz harf");
-            break;
+        // System.Console.WriteLine("Bir harf giriniz");
+        // char harf = Convert.ToChar(Console.ReadLine());
+        //  harf = char.ToLower(harf);
+        // switch(harf){
+        //     case 'a':
+        //     case 'b':
+        //     case 'C':
+
+        //     System.Console.WriteLine('sesli harf');
+        //     break;
+        //     default:
+        //     System.Console.WriteLine("sesiz harf");
+        //     break;
+        // }
+
+        // DateTime şimdikizaman = DateTime.Now;
+
+        //  System.Console.WriteLine(şimdikizaman.ToString("dd.MM.yyy"));
+
+        // System.Console.WriteLine("bir tarih giriniz");
+        // DateTime time = Convert.ToDateTime(Console.ReadLine());
+        // DateTime nowtime = DateTime.Now;
+        // TimeSpan fark= nowtime-time;
+        // System.Console.WriteLine($"günfarkı:{fark.Days} gün");
+        // System.Console.WriteLine("tarih giriniz");
+        // string input = (Console.ReadLine());
+        // DateTime time;
+
+        // if(DateTime.TryParse(input,out time)){
+        //     DateTime nowtime = DateTime.Now;
+        //     TimeSpan fark =nowtime-time;
+        //     System.Console.WriteLine($"fark:{fark.Days} gün");
+
+        // }else{
+        //     System.Console.WriteLine("geçersiz tarih ");
+        // }
+
+        //    System.Console.WriteLine("Lütfen yyyy-MM-dd formatında bir tarih giriniz");
+        //    System.Console.WriteLine("lütfen HH:mm:ss formatında saat giriniz");
+        //    DateTime simdikiZaman = DateTime.Parse(Console.ReadLine());
+        //    TimeSpan simdikiSaat=TimeSpan.Parse(Console.ReadLine());
+        //    DateTime tamTarih = simdikiZaman.Add(simdikiSaat);
+        //    System.Console.WriteLine(tamTarih.ToString("yyyy-MM-dd HH:mm:ss"));
+
+
+        //     System.Console.WriteLine("bir tarih giriniz");
+        //    DateTime zaman =DateTime.Parse(Console.ReadLine());
+        //    string gun = zaman.DayOfWeek.ToString();
+        //    System.Console.WriteLine($"Bugün günlerden {gun}");
+
+        //  System.Console.WriteLine("Bir tarih giriniz (yyyy-MM-dd HH:mm:ss)formatında");
+        //  DateTime time = DateTime.Parse(Console.ReadLine());
+        //  TimeSpan saat = TimeSpan.Parse(Console.ReadLine());
+        //  DateTime tamzaman = time.Add(saat);
+
+        //  System.Console.WriteLine($"bir hafta sonraki tarih : {tamzaman.AddDays(7)}");
+
+        // System.Console.WriteLine("Bir tarih gir (yyyy-MM-dd HH:mm:ss)formatında olsun");
+        // DateTime time = DateTime.Parse(Console.ReadLine());
+        // DateTime birHaftasonra = time.AddDays(7);
+        // System.Console.WriteLine($"Bir hafta sonraki tarih :{birHaftasonra.ToString("yyyy-MM-dd HH:mm:ss")}");
+
+        //         System.Console.WriteLine("doğum gününü gir ");
+        //         DateTime dogumGunu = DateTime.Parse(Console.ReadLine());
+        //         DateTime 
+        // simdikizaman = DateTime.Now;
+        //         TimeSpan fark = dogumGunu-simdikizaman;
+        //         System.Console.WriteLine($"aradaki fark {fark.ToString("yyyy-MM-dd")}"); 
+        // int toplam =0;
+        // for (int i = 1; i < 100; i++)
+        // {
+        //     if(i%2==0){
+        //         System.Console.WriteLine(i);
+        //         toplam+=i;
+        //     }
+
+        // }
+        // System.Console.WriteLine($"1'den 100e kadar olan çift sayı toplamı {toplam}");
+
+
+        // for (int i = 1; i <= 50; i++)
+        // { if(i%2!=0)
+        //             {
+        //                 System.Console.WriteLine(i);
+
+        //             }
+
+
+        // }
+
+        // int toplam = 0;
+        // for (int i = 1; i <= 100; i++)
+        // {
+        //     if(i%3==0){
+        //         System.Console.WriteLine(i);
+        //         toplam+=i;
+        //         System.Console.WriteLine(toplam);
+        //     }
+        // }
+
+        // System.Console.WriteLine("Lütfen bir pozitif sayı giriniz");
+        // int sayi = int.Parse(Console.ReadLine());
+
+
+
+        //     if(sayi<0){
+        //         for (int i = 0; i < length; i++)
+        //         {
+        //                 int sayiküpü = i * i * i;
+        //                 System.Console.WriteLine(sayiküpü);
+
+        //             }
+
+        //     }
+        //     else
+        //     {
+        //         Console.WriteLine("Lüten pozitif bir sayı giriniz");
+        //     }
+
+
+
+        // System.Console.WriteLine("Lütfen pozitif bir tamsayı giriniz");
+
+        // int girilenSayi = int.Parse(Console.ReadLine());
+
+        // if(girilenSayi>0)
+        // {
+        //     for (int i = 1; i <= girilenSayi; i++)
+        //     {
+        //        for (int j = 1; j < i; j++)
+        //        {
+        //         System.Console.Write("*");
+
+        //        }
+        //        System.Console.WriteLine();
+
+
+        //     }
+
+        // }
+        // else{
+        //     System.Console.WriteLine("Negatif bir sayı girdiniz");
+        // }
+
+
+        // System.Console.WriteLine("Lütfen bir sayı giriniz");
+        // int girilenSayi = int.Parse(Console.ReadLine());
+        // int toplam =0;
+        // do
+        // {
+        //     toplam += girilenSayi;
+        //     girilenSayi--;
+
+        //     System.Console.WriteLine($"Toplam: {toplam}");
+        // } while (girilenSayi >=0);
+
+        // System.Console.WriteLine("Lütfen pozitif sayı giriniz");
+        // int sayi=  int.Parse(Console.ReadLine());
+        // int toplam = 0;
+
+
+        // do
+        // {
+
+        //     toplam+=sayi;
+        //     System.Console.WriteLine($"Toplam:{toplam}");
+
+        //     System.Console.WriteLine("Lütfen yeni bir sayı giriniz");
+        //     sayi=int.Parse(Console.ReadLine());
+
+        // } while (sayi>=0);
+
+        // System.Console.WriteLine($"negatif bir sayı gidiniz: toplam {toplam}");
+
+        // Random rnd = new Random();
+        // int hedefSayi = rnd.Next(0, 101);
+        // int tahmin;
+        // int denemeSayisi = 0;
+
+
+        // do
+        // {
+        //     System.Console.WriteLine("Lütfen(0-100)arasında bir sayı giriniz");
+        //     tahmin = int.Parse(Console.ReadLine());
+        //     denemeSayisi++;
+        //     if (tahmin > hedefSayi)
+        //     {
+        //         System.Console.WriteLine("daha küçük bir sayı dene");
+        //     }
+        //     else if (tahmin < hedefSayi)
+        //     {
+        //         System.Console.WriteLine("daha büyük bir sayı dene");
+        //     }
+
+        // } while (tahmin != hedefSayi);
+        // System.Console.WriteLine("tebrikler, {denemeSayisi} kadar denemede bildiniz");
+
+        // System.Console.WriteLine("Lütfen pozitif bir sayı giriniz");
+        // int sayi = int.Parse(Console.ReadLine());
+        // int faktoriyel =1;
+        // int sayac = sayi;
+
+        // if( sayi<0){
+        //     System.Console.WriteLine("Negatif bir sayı girdiniz");
+        // }
+        // else
+        // {
+        //     do
+        //     {
+        //         faktoriyel*=sayac;
+        //         sayac--;
+
+        //     } while (sayac>0);
+        //     System.Console.WriteLine($"{sayi}! : {faktoriyel}");
+
+
+
+        // }
+
+        // System.Console.WriteLine("Pozitif bir sayı giriniz");
+        // int sayi;
+        // int toplam = 0;
+        // sayi = int.Parse(Console.ReadLine());
+        // if (sayi < 0)
+        // {
+        //     System.Console.WriteLine("negatif bir sayı girdiniz tekrar deneyin");
+        //     sayi = int.Parse(Console.ReadLine());
+
+        // }
+        // else
+        // {
+        //     while (sayi > 0)
+        //     {
+        //         toplam += sayi;
+
+        //         sayi--;
+        //     }
+        //     System.Console.WriteLine($"toplam sayı :{toplam}");
+
+        // }
+
+        // int[] sayilar = new int[5];
+
+        // for (int i = 0; i < sayilar.Length; i++)
+        // {
+        //     System.Console.WriteLine($"Lütfen {i+1}. sayıyı giriniz");
+        //     sayilar[i]=int.Parse(Console.ReadLine());
+        // }
+        // System.Console.WriteLine("girdiğiğiniz sayılar");
+        // for (int i = 0; i < sayilar.Length; i++)
+        // {
+        //    System.Console.WriteLine(sayilar[i]); 
+        // }
+
+        // int[] sayilar = new int[5];
+        // for (int i = 0; i < sayilar.Length; i++)
+        // {
+           
+            
+        //         System.Console.WriteLine($"lütfen {i+1} .adet pozitif sayı giriniz");
+        //         sayilar[i] = int.Parse(Console.ReadLine());
+
+        // }
+        // int enbuyukSayi = int.MaxValue;
+        //     int enkucukSayi = int.MinValue;
+
+
+        // for (int i = 0; i < sayilar.Length; i++)
+        // {
+        //    if(sayilar[i]>enbuyukSayi){
+        //     enbuyukSayi =sayilar[i];
+
+        //    }
+        //    else{
+        //     enkucukSayi=sayilar[i];
+
+        //    }
+        // }
+        // System.Console.WriteLine($"en büyük sayi{enbuyukSayi}\n en küçük sayi {enkucukSayi}");
+        // System.Console.WriteLine("öğrencilerin notları");
+        // int toplam =0;
+
+        // int[] notlar ={70,85,90,60,75};
+
+        // int enYuksek =notlar[0];
+        // int enDusuk = notlar[0];
+        // for (int i = 0; i < notlar.Length; i++)
+        // {
+
+        //     System.Console.WriteLine(notlar[i]);
+        //     toplam+= notlar[i];
+        //     if(notlar[i]>enYuksek)
+            
+        //         enYuksek=notlar[i];
+
+        //     if(notlar[i]<enDusuk)
+        //         enDusuk=notlar[i];
+
+            
+        // }
+           
+        //     double ortalama =(double)toplam/notlar.Length;
+        // System.Console.WriteLine($"Notların ortalaması = {ortalama}");
+
+        //     System.Console.WriteLine($"en düşük not = {enDusuk}");
+        //     System.Console.WriteLine($"en yüksek not ={enYuksek}");
+// System.Console.WriteLine("Lütfen 5 adet sayı giriniz");
+// int[] girilenSayi =  new int[5];
+// int toplam = 0;
+// int enbuyukSayi;
+// int endusukSayi;
+// for (int i = 0; i < girilenSayi.Length; i++)
+// {
+//     System.Console.WriteLine($"Sayı {i+1}:");
+//     girilenSayi[i]= Convert.ToInt32(Console.ReadLine());
+//     toplam+=girilenSayi[i];
+
+// }
+
+// enbuyukSayi=girilenSayi[0];
+// endusukSayi=girilenSayi[0];
+// for (int i = 1; i < girilenSayi.Length; i++)
+// {
+//             if (girilenSayi[i] > enbuyukSayi)
+//             {
+//         enbuyukSayi=girilenSayi[i];
+
+//     }
+//             if (girilenSayi[i] < endusukSayi)
+//             {
+//         endusukSayi=girilenSayi[i];
+
+//     }
+// }
+
+// double ortalama=(double)toplam/girilenSayi.Length;
+
+// System.Console.WriteLine($"Sayıların toplamı {toplam}");
+// System.Console.WriteLine($"Sayıların ortalaması{ortalama}");
+// System.Console.WriteLine($"enbuyukSayi{enbuyukSayi}");
+// System.Console.WriteLine( $"en kucuk sayi {endusukSayi}");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-}
