@@ -174,16 +174,113 @@ class Program
     // }
     // System.Console.WriteLine(sayaç);
     // return sayaç;
+    //ödev12 
+
+    // public static string gunBul(DateTime tarih){
+    //     DayOfWeek gun = tarih.DayOfWeek;
+    //     return gun.ToString();
+    // }
+    // static void Main()
+    // System.Console.WriteLine("Bir tarih giriniz(yyyy-MM-dd formatında)");
+    // DateTime girilenTarih = DateTime.Parse(Console.ReadLine());
 
     //Ödev13 Belirli bir metin içinde geçen kelimeleri sayan bir metot yazın.
-    static int kelimeBul(string kelime)
-        {
-            foreach (var item in collection)
-            {
-                
-            }
+    // public static int KelimeBul(string metin, string aranankelime)
+    // metin = metin.ToLower();
+    // aranankelime= aranankelime.ToLower();
+    // string[] kelimeler =metin.Split(' ', ',', '.', '!', '?', ';', ':');
+    // int sayac = 0;
+    // foreach (string kelime in kelimeler)
+    // {
+    //     if (kelime==aranankelime){
+    //         sayac++;
+    //     }
+    // }
+    // return sayac;
 
-        }
+
+    //Ödev14 İki tarih arasındaki gün sayısını hesaplayan bir metot yazın.
+
+    // public static int gunSayisiHesapla(DateTime tarih1 DateTime tarih2){
+    //     TimeSpan fark tarih2-tarih1
+    //     return Math.Abs(fark.Days);
+    // } ödev 15 Bir dizideki elemanların ortalamasını döndüren bir metot yazın.
+
+
+    // static void Main(strinf[] args){
+
+    //         int[] dizi = { 2, 3, 4, 5, 6, 7, 8, 9 };
+    //         double ortalama =Ortalama(dizi);
+    //         System.Console.WriteLine("dizideki elemanların ortalaması :"+ortalama);
+
+
+    //     }
+
+    //   public static double Ortalama(int[] dizi){
+    //     foreach(int sayı in dizi){
+    //         toplam+=sayı;
+    //         double ortalama =(double)toplam/dizi.Lenght;
+    //         return ortalama
+    //     }
+    //   }
+    //Ödev16
+    // public class PalindromKontrol
+    // {
+    //     public static bool IsPalindrome(string kelime)
+    //     {
+
+    //         kelime = kelime.ToLower();
+
+
+    //         kelime = kelime.Replace(" ", "");
+
+
+    //         string tersKelime = new string(kelime.Reverse().ToArray());
+
+    //         return kelime == tersKelime;
+    //     }
+
+    // public int SayiyiBul (List<int> liste, int aranansayi)
+
+    // int sayac=0;
+    // foreach (int sayi in liste)
+
+
+    // {
+    //   if(sayi==aranansayi) {
+    //     sayac++;
+    //   }
+    //   return sayac;
+    // }
+    //ödev18
+
+    // public string TamIsim (string ad,string soyad)
+    // {
+    //     return ad+" "+soyad;
+    // }
+
+    //ödev19
+    //sor
+
+    //ödev20
+
+    // public static string StringleriBirleştir(string[] dizi)
+    // {
+        
+    //     return string.Join(" ", dizi);
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -208,6 +305,52 @@ class Program
         // System.Console.WriteLine("bir kelime giriniz");
         //     string input=Console.ReadLine();
         //     kelime(input);  
+        //  string gun =GunBul(tarih);
+        //  System.Console.WriteLine("girdiğiniz tarih:"+gun);
+
+
+        // Console.WriteLine("Bir metin giriniz: ");
+        // string metin = Console.ReadLine();
+
+        // Console.WriteLine("Aramak istediğiniz kelimeyi giriniz: ");
+        // string aranankelime = Console.ReadLine();
+
+        // int kelimeSayisi = KelimeBul(metin, aranankelime);
+        // Console.WriteLine("Girdiğiniz metinde '" + aranankelime + "' kelimesi " + kelimeSayisi + " kez geçiyor.");
+        // Console.WriteLine("Birinci tarihi giriniz (yyyy-MM-dd formatında): ");
+        // DateTime tarih1 = DateTime.Parse(Console.ReadLine());
+
+        // Console.WriteLine("İkinci tarihi giriniz (yyyy-MM-dd formatında): ");
+        // DateTime tarih2 = DateTime.Parse(Console.ReadLine());
+        // int gunSayisi = GunSayisiHesapla(tarih1, tarih2);
+        // Console.WriteLine("İki tarih arasındaki gün sayısı: " + gunSayisi);
+        // string kelime = "kayak"; 
+
+        // if (IsPalindrome(kelime))
+        // {
+        //     Console.WriteLine("{0} bir palindromdur.", kelime);
+        // }
+        // else
+        // {
+        //     Console.WriteLine("{0} bir palindrom değildir.", kelime);
+        // }
+
+
+
+        // List<int> sayilar = new List<int> { 1, 2, 3, 4, 5, 3, 6, 3, 7, 3 };
+        // int aranansayi = 3;
+        // int tekrarSayisi = SayiyiBul(sayilar, arananSayi);
+        // Console.WriteLine($"{arananSayi} sayısı listede {tekrarSayisi} defa geçiyor.");
+
+        // Console.Write("Adınızı girin: ");
+        // string ad = Console.ReadLine();
+        // Console.Write("Soyadınızı girin: ");
+        // string soyad = Console.ReadLine();
+        // string tamIsim = TamIsim(ad, soyad);
+        // Console.WriteLine("Tam isminiz: " + tamIsim);
+        // string[] kelimeler = { "selam", "canım", "nasılsın" };
+        // string birlesmisString = StringleriBirleştir(kelimeler);
+        // Console.WriteLine("Birleşmiş string: " + birlesmisString);
 
 
 
