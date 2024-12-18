@@ -1,0 +1,22 @@
+﻿@model IEnumerable<RandevuSistemi_GokhanAleyna.Models.Appointment>
+
+<h2>Randevular</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tarih</th>
+            <th>Saat</th>
+            <th>Kullanıcı ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appointment in Model)
+        {
+            <tr>
+                <td>@appointment.Date.ToString("dd/MM/yyyy")</td>
+                <td>@appointment.Time</td>
+                <td>@appointment.UserId</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tekrar.UI", "Tekrar.UI\Tekrar.UI.csproj", "{81060248-4B47-41BC-BA01-3E7CEA6B3587}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tekrar.Business", "Tekrar.Business\Tekrar.Business.csproj", "{FAA6A0E0-5A20-4E09-A5F7-4EA2DC24EF8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tekrar.Data", "Tekrar.Data\Tekrar.Data.csproj", "{9B3B5295-C557-4F21-A9C2-0C9B75063728}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tekrar.Entity", "Tekrar.Entity\Tekrar.Entity.csproj", "{1A363BD1-4E56-48B1-894B-467596D99E51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tekrar.Shared", "Tekrar.Shared\Tekrar.Shared.csproj", "{FB6712BC-1FDD-4F29-B433-3507CCF57211}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81060248-4B47-41BC-BA01-3E7CEA6B3587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81060248-4B47-41BC-BA01-3E7CEA6B3587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81060248-4B47-41BC-BA01-3E7CEA6B3587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81060248-4B47-41BC-BA01-3E7CEA6B3587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAA6A0E0-5A20-4E09-A5F7-4EA2DC24EF8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAA6A0E0-5A20-4E09-A5F7-4EA2DC24EF8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAA6A0E0-5A20-4E09-A5F7-4EA2DC24EF8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAA6A0E0-5A20-4E09-A5F7-4EA2DC24EF8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B3B5295-C557-4F21-A9C2-0C9B75063728}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B3B5295-C557-4F21-A9C2-0C9B75063728}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B3B5295-C557-4F21-A9C2-0C9B75063728}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B3B5295-C557-4F21-A9C2-0C9B75063728}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A363BD1-4E56-48B1-894B-467596D99E51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A363BD1-4E56-48B1-894B-467596D99E51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A363BD1-4E56-48B1-894B-467596D99E51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A363BD1-4E56-48B1-894B-467596D99E51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB6712BC-1FDD-4F29-B433-3507CCF57211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB6712BC-1FDD-4F29-B433-3507CCF57211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB6712BC-1FDD-4F29-B433-3507CCF57211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB6712BC-1FDD-4F29-B433-3507CCF57211}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
