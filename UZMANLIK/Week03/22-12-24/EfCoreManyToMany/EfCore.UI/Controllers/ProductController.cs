@@ -7,8 +7,8 @@ namespace EfCore.UI.Controllers
       
         public async Task<ActionResult> Index()
         {
-            var products = await _
-            return View();
+            var products = await _ 
+            return View();  //
         }
 
     }
