@@ -1,0 +1,22 @@
+@model Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+ <h1>@model.Title Detay Sayfası</h1>
+ <div> class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="@Model.Image" class="img-fluid" />
+            </div>
+            <div class="col-md-6">
+                <h2>@Model.Title</h2>
+                <p>@Model.Description</p>
+                <p>Price: @Model.Price</p>
+                <p>Category: @Model.Category</p>
+                <p>Rating: @Model.Rating.rate</p>
+                <p>Count: @Model.Rating.count</p>
+            </div>
+        </div>
+
+ </div>
