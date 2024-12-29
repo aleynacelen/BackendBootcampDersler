@@ -34,6 +34,8 @@ namespace EfCore.UI.Controllers
                 }).ToList();
             return categoryList;
         }
+
+        [HttpGet]
         public async Task<ActionResult> Create()
         {
             ProductCreateDto productCreateDto = new()
@@ -55,43 +57,38 @@ namespace EfCore.UI.Controllers
             productCreateDto.CategoryList = await GetCategoryListAsync();
             return View(productCreateDto);
         }
+
         [HttpGet]
         public async Task<ActionResult> Update(int id)
         {
-            var product = await = _productService.GetByIdAsync(id);
-                var ProductDto = new ProductUpdateDto
-                { Id=product.Id,
-                Name =product.Name,
-                Price =product.Price,
-                Properties=product.Properties,
-                CategoryList=await GetCategoryListAsync();
-                CategoryIds=product.Categories.Select(x=>x.Id).ToArray()
-
-                };
-               
+            var product = await _productService.GetByIdAsync(id);
+            var productUpdateDto = new ProductUpdateDto
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                Properties = product.Properties,
+                CategoryList = await GetCategoryListAsync(),
+                CategoryIds = product.Categories.Select(x => x.Id).ToArray()
+            };
             return View(productUpdateDto);
-
         }
+
         [HttpPost]
         public async Task<ActionResult> Update(ProductUpdateDto productUpdateDto)
         {
-         if(ModelState.IsValid && productUpdateDto.CategoryIds.Any())       
-         {
-            await _productService.Update.Async(product.ProductUpdateDto);
-            return RedirectToAction("Index");
-            if(productUpdateDto.CategoryIds== productUpdateDto.CategoryIds.Any())
+            if (ModelState.IsValid && productUpdateDto.CategoryIds != null && productUpdateDto.CategoryIds.Count() > 0)
             {
-                 ViewBag.CategoryErrorMessage=
-            productUpdateDto.CatgoryIds.Any() ? " " : "Kategori boş bırakılamaz"
-            
-
+                var product = await _productService.UpdateAsync(productUpdateDto);
+                return RedirectToAction("Index");
             }
-            productUpdateDto.CategoryLis=await GetCategoryListAsync();
-           
+            if (productUpdateDto.CategoryIds == null || productUpdateDto.CategoryIds.Count() == 0)
+            {
+                ViewBag.CategoryErrorMessage = "Kategori boş bırakılamaz!";
+                productUpdateDto.CategoryIds = [];
+            }
+            productUpdateDto.CategoryList = await GetCategoryListAsync();
             return View(productUpdateDto);
-
-         }
         }
-
     }
 }

@@ -159,14 +159,17 @@ public class ProductService : IProductService
                 CategoryId = x
             }).ToList();
         await _productRepository.UpdateAsync(product);
+
+        var updatedProduct = await _productRepository.GetProductWithCategoriesAsync(product.Id);
+
         var productDto = new ProductDto
         {
-            Id = product.Id,
-            Name = product.Name,
-            Properties = product.Properties,
-            Price = product.Price,
-            IsDeleted = product.IsDeleted,
-            Categories = product
+            Id = updatedProduct.Id,
+            Name = updatedProduct.Name,
+            Properties = updatedProduct.Properties,
+            Price = updatedProduct.Price,
+            IsDeleted = updatedProduct.IsDeleted,
+            Categories = updatedProduct
                 .ProductCategories
                 .Select(x => new CategoryDto
                 {
