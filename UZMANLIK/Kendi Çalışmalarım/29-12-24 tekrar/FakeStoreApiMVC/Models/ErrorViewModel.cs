@@ -1,4 +1,4 @@
-namespace WebApplication1.Models;
+namespace FakeStoreApiMVC.Models;
 
 public class ErrorViewModel
 {
