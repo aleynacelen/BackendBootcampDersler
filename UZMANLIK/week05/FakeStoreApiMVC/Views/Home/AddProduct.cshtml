@@ -1,0 +1,37 @@
+
+
+@section Scripts {
+    <script>
+        $('#addProductForm').submit(function (event) {
+            event.preventDefault();
+
+            let formData = {
+                Title: $('#Title').val(),
+                Description: $('#Description').val(),
+                Price: $('#Price').val(),
+                Category: $('#Category').val(),
+                Image: "SamplePicture.png"
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddProduct", "Home")',
+                data: formData,
+                success: function (addedProduct) {
+                    let newRow = `
+                                    <tr>
+                                        <td>${addedProduct.id}</td>
+                                        <td>${addedProduct.title}</td>
+                                        <td>${addedProduct.price}</td>
+                                        <td>${addedProduct.category}</td>
+                                    </tr>
+                                `;
+                    $('#productsTable tBody').append(newRow);
+                },
+                error: function () {
+                    alert("Bir hata oluştu!");
+                }
+            });
+        });
+    </script>
+}
