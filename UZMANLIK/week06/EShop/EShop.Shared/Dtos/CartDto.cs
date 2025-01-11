@@ -10,7 +10,36 @@ public class CartDto
     public bool IsActive { get; set; } 
     public bool IsDeleted { get; set; }
     public string? ApplicationUserId { get; set; }
-    // public ApplicationUserDto ApplicationUser { get; set; }
-    // public ICollection<CartItemDto> CartItems { get; set; } = new List<CartItemDto>();
+    public ApplicationUserDto ApplicationUser { get; set; }=new ApplicationUserDto();
+    public ICollection<CartItemDto> CartItems { get; set; } = new List<CartItemDto>();
+    public decimal TotalAmount ()=>CartItems.Sum(x=>x.Product.Price*x.Quantity);
+    public int TotalItems => CartItems.Count (); 
+
+  
+
 
 }
+
+
+
+
+
+
+
+
+// public decimal TotalPrice
+// {
+//     get
+//     {
+//         return CartItems.Sum(x => x.Price * x.Quantity);
+//     }
+// }
+
+// // public decimal TotalPrice=>CartItems.Sum(x=>x.Price*x.Quantity);
+// public decimal TotalPrice
+// {
+//     get
+//     {
+//         return CartItems.Sum(x => x.Price * x.Quantity);
+//     }
+// }

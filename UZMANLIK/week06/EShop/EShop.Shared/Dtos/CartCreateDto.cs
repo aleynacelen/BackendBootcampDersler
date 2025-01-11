@@ -1,9 +1,11 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace EShop.Shared.Dtos;
 
 public class CartCreateDto
 {
-    public string? ApplicationUserId { get; set; }
+    [Required(ErrorMessage = "Kullanıcı id boş olamaz")]
+    public string? ApplicationUserId { get; set; } 
 
 }

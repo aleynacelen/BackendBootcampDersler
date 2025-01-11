@@ -18,6 +18,11 @@ public class ProductUpdateDto
     public decimal? Price { get; set; }
     [Required(ErrorMessage = "Ürün resmi boş olamaz")]
     public IFormFile? Image { get; set; }
+    [Required(ErrorMessage = "Silinme durumu belirtilmelidir")]
+    public bool IsDeleted { get; set; }
+    [Required(ErrorMessage = "Aktif/Pasif durumu belirtilmelidir")]
+    public bool IsActive { get; set; }
+
     [Required(ErrorMessage = "Her ürün en az bir kategoriye ait olmalıdır")]
     public ICollection<int> CategoryIds { get; set; } = new List<int>();
 }

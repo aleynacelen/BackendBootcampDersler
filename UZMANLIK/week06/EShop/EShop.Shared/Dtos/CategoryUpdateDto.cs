@@ -15,5 +15,10 @@ public class CategoryUpdateDto
     public string? Description { get; set; }
 
     public IFormFile? Image { get; set; }
+    [Required(ErrorMessage = "Silinme durumu belirtilmelidir")]
+            public bool IsDeleted { get; set; }
+    [Required(ErrorMessage = "Aktif/Pasif durumu belirtilmelidir")]
+    public bool IsActive { get; set; }
+
 
 }
