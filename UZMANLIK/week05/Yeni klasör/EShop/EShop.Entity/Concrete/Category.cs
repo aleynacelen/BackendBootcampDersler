@@ -18,6 +18,6 @@ public class Category : BaseEntity
     public string Name { get; set; } = string.Empty;
     public string ImageUrl { get; set; } = string.Empty;
     public string? Description { get; set; }
-    public ICollection<ProductCategory> ProductCategories { get; set; } = new HashSet<ProductCategory>();
+    public ICollection<ProductCategory> ProductCategories { get; set; } = new HashSet<ProductCategory>();//bu satırı yazma sebi: bir kategorinin birden fazla ürünü olabilir ve bu ürünleri tutmak için bir liste oluşturduk.
 
 }
