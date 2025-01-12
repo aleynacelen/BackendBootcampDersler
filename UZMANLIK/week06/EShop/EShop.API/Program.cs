@@ -1,9 +1,13 @@
+using System.Text;
 using EShop.Data.Abstract;
 using EShop.Data.Concrete;
 using EShop.Data.Concrete.Contexts;
 using EShop.Data.Concrete.Repositories;
 using EShop.Entity.Concrete;
+using EShop.Shared.Configaration.Aut;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +28,22 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options=>{
     options.Password.RequireUppercase = true;
     options.Password.RequiredLength = 8;
     options.User.RequireUniqueEmail = true;
-});
+}).AddEntityFrameworkStores<EShopDbContext>().AddDefaultTokenProviders();
+
+builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
+var jwtConfig=builder.Configuration.GetSection("JwtConfig").Get<JwtConfig>();
+builder.Services.AddAuthentication(options=>{options.DefaultAuthenticateScheme="JwtBearer";options.DefaultChallengeScheme="JwtBearer";})
+    .AddJwtBearer("JwtBearer",jwtBearerOptions=>{
+        jwtBearerOptions.TokenValidationParameters=new TokenValidationParameters
+        {
+           ValidateIssuerSigningKey=true,
+        //    ValitationAudience=true,
+        //    ValidationIssuerSigningKey=true,
+        //    ValideIssuer = jwtConfig?.Issuer,
+              ValidAudience=jwtConfig?.Audience,
+              IssuerSigningKey=new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig.Secret))
+        };
+    });
 
 
 
