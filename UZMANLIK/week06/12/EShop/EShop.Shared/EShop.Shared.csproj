@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EShop.Data\EShop.Data.csproj" />
-    <ProjectReference Include="..\EShop.Shared\EShop.Shared.csproj" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configurations\Email\" />
   </ItemGroup>
 
 </Project>
