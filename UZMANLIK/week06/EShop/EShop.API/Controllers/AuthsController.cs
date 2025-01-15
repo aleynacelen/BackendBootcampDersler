@@ -1,4 +1,8 @@
+using System.IO.Pipelines;
+using System.Security.Principal;
 using EShop.Service.Abstract;
+using EShop.Shared.Dtos.Auth;
+using EShop.Shared.Dtos.ResponseDtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,7 +45,80 @@ namespace EShop.API.Controllers
 //var jwtConfig= builder.Configuration.GetSection("JwtConfig").Get<JwtConfig>(); //bu kodu yazdık cunku baska bır klasın ıcınde
 // builder.Services.AddAuthentication (options=>{option.s})
 //nuget.orga gidiyoruz ve jwtbearres paketini yüklüyouruz
-///
+//api projesine yüklüyoruz 
+//shemaları ekliyoruz
+//optiontions.DefaultAuthenticateScheme=JwtBearerDefults.AuthencationScheme;
+//options.DefaultChallengeScheme=JwtBearerDefaults.AuthenticationScheme;. AddJwtBearer (diyio burada da eklediğimiz paketle alakalı yapılandırmaları yapıyoruz)
+//
+//options.TokenValitdationParametrer = new TokenValidationParameters{ ısu aud vs bunları kontrol edeyim mi gerekli olan ısu nerede yazıyor bana tanıt... ıssuesigkey kısmında da = new SymetricSc(endcodin.utf8.geybyyts(jwtConfig.Secre))}= ikili sayı sistemine dönüştürüyoruz bir kkez daha sifremizin güvenliğini arttırıyoruz
+// ve servis katmanınd abstract ve concate oluşturyoruz 
+//ilk önce IAutchServices oluşturuyoruz ve 
+
+//servislerimde belli metodlarım olucak kodumu kullanarak kod yazıcak kişinin daha fazla bilgi sahibi olması lazım ve bazende hata döndüreceğim ve hatalarım çeşit çeşit olucak 
+//kolaylık sağlamak amacıyla bir ceavp standardı oluşrtumam gerekşyor ve bunun için response diye bir class oluşturmam gerekıyor ve bunu dtosun ıcıne oluşruracağım istersem ayrı da oluşturabılırım bu sınıfın içinde 1 geri döndürülecek datayı 2 geri dödüreülecek hata mesajını geri döndürülcecek hata kodunu ve işlemin başarılı olup olmadıgını döndürücek 
+//ve kılasımızı düzenliyoruz
+//public class Response<T>{ public t? data get set public string Errormesage (amacı hatayı tutmak) prop int StatusCode bool tipde IsSussesfull başarılı olup olmadığını anlatan bır şey dönücek}
+// Başarılı durumlarda kullanılcak constracter metodlarımkz
+//publiv static ResponseDto<T> Success(T?,data, int statusCode){return new Response<T> Data=data StatusCode=statusCode IsSUSSE=TRUE}
+//BAŞARILI AMA GERİYE DATA DÖNDÜRMEYECEK DURUMLARDA
+//public static ResponseDto<T> Success(int statusCode)
+//{data defult statuscode status code ıssuccelul}
+//fail olma durudumda ise fail adında bir dta oluşucak 
+//burda factory desing paket kullandık cunku önce oluşturup sonra içindekş metodu kullanmak zorunda kalmayacağım 
+//şimdi ise servisin içinde oluştudurudğumuz IAutchServisin içinde dönüyoruz ve ordada task<responsedto<??>> LoginAync (LoginDto logindto); oluşturuyoruz 
+//ve dtoların içinde login dtoyu oluşturuyoruz
+//sonra tokendtoyu oluşturuyoryz
+//login dtrouun içinde user name ve şifre var
+//token dtounun içinde ise accsestoken adını verdiğimiz bir değer ve bitme tarihini tutacağımız iki tane prop olsun
+//registordtro olucak isim, soyisim gibi bildilerin oldugu proplar bulunucak
+//kullancı şifresimi unuttugundakı kısım içinde bir dto hazırlanacak daha sonrasında requided bilgileribi vereceğiz registord compare: eşitliiğini kontroller ettiğimniz şifre kısmında kullanacğaız ve bunları ıautch servisin içine task olarak yazacağız
+//concratein içine AutchManagr diye bir sınıf oluşturduk
+//ve ilk aşama olarak içerine 
+//private readonly UserManager<ApplicationUser> _userManager i ekliyoruz bana bir user ver bu neye göre çalışıcak application usera göre
+//private readonly SigInManager<ApplicaitonUser> _sigInManager i ekliyoruz  bu bize ıdentittyden geliyor login ve logut olma gibi şeylri barıdnıyor
+//private JwtConfig _jwtConfig; ekliyoruz bunu direkt bu tipde alamıyoruz ona müdahalede bulunmamız gerekiyor  onu IOpitons içinde almamız gerekiyor ve içerindeki jwtConfig= options.Value olarak almamız gerekiyor.
+//ıauth servisten implement etmemiz gerekiyor 
+//ilk aşama olarak da login işlemini yapıyoruz 
+//loginnin içinw yazmam gerken bilgileri yazıyorum
+//try catch meknaızmasının içine yazıyorum cunku hata yakalamam gerekiyor sistemsel hataları yaklamam gerekiyor
+// try
+// {
+    //var user = await _userManager.findByName(logindtor.username)// findbyname kullanıcı adına göre arama yapan bir metod 
+    //if(user==null)
+    // {
+    //     return ResponseDto<TokenDto>.Fail("Kullanıcın adı veya şifre hatalı",StatusCode.kullanılcakstatuscodelar,);
+    // }
+    //var isValidPassword= await _userManager.CheckPasswordAsyc(user,loginDto.Passwordd); if işinde kontrol ediyoruz ve return respınsestroz<TokenDtoZ.Fail(kullanıcı adı veya şifre hatalı mesajını veriyoruz bunuda statuscode.status400Request ile)
+    
+// }
+// catch (System.Exception)
+// {
+    
+//     throw;
+// }
+//token yaratmamız gerekiyor 
+// try
+// {
+//     var roles = _userManager.GetRoleAsyn(user);
+        //var username //kulanııyla ilgili bilgiler claim ve kullanıcı hakkındaki bilgileri ekleyeceğiz
+        //newClaim = new List<CLAİM>
+        //new claim(claimTypes.NameIdenttifier userId namevs burada ekliyoruz)
+        //JwtRegistered.Names.jti(tokena özelleştirilmiş bir id),Guid.NewGuid().ToString())()- guid sitesinde oluşturduğumuz rastgele guid değerini c de böyle bir kod ile yazarız
+        //rolleri eklemek için linq sorgusu ile yukarıdaki bilgilerle birşeleştirebiliriz
+        //.Uniom(roles.Select(x=>new Claim(ClaimTypes.Role,x)))
+        //-- burada diyoruz ki unionla birleştiriyoruz
+
+        //olan keyi binary formatta vermeiz için aşağıdaki gibi yazarız
+        // var key = new 
+
+// }
+// catch (System.Exception)
+// {
+    
+//     throw;
+// }
+
+ 
 
 
 
