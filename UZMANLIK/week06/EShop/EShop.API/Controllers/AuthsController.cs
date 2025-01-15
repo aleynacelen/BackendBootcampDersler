@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.IO.Pipelines;
 using System.Security.Principal;
 using EShop.Service.Abstract;
@@ -109,7 +110,19 @@ namespace EShop.API.Controllers
         //-- burada diyoruz ki unionla birleştiriyoruz
 
         //olan keyi binary formatta vermeiz için aşağıdaki gibi yazarız
-        // var key = new 
+        // var key = new  SymmetricSecurity Key(encoid.utf8.getbyres(jwtvon.sec)
+        //var credentials = new Signincredential(keyisecuritiy))//bu imzzayı kulland
+        //var ecpiry=DateTime.Now.AddDays(Convert.ToDouble(_jwtCınfig.Acsess)) süresi için 30 gün soneası mesala
+        // var token= new JwtSecurityToken(
+        //     issuer:_jwtConfig.Issuer,
+        //     audience:_jwtConfig.Audience,
+        //     expires:expiry,
+        //     signingCredentials:creditials
+        /// 1.42 kala tokenı daha guvenli nasıl yazabılceğımızı gösteren kodlar var
+
+        // )
+
+
 
 // }
 // catch (System.Exception)
