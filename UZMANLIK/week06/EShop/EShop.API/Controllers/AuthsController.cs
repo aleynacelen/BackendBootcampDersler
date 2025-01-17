@@ -130,6 +130,19 @@ namespace EShop.API.Controllers
     
 //     throw;
 // }
+//işlemler bittikten sonra login işlerşmşni kontrol edeceğiz
+//
+//daha sonra controller klasörüne gidip api kontroller oluşturacağız
+//Controllerbase den miras alıyor, normal controlerden da miras alıyor ve içinde viev gibi yapılar yok
+// private readonly IAuthService _authService;
+//public AuthsController(IAuthtService autchService)
+//{
+//_AUTHTsERVİDE = AUTCHSERVİCE;
+//}
+//DEDİKTEN SORNA LOGİN İŞLEMİNİ ARTIK GERçeekleştiriyoruz
+
+public async
+
 
  
 
