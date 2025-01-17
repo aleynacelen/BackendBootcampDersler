@@ -6,6 +6,7 @@ using EShop.Shared.Dtos.Auth;
 using EShop.Shared.Dtos.ResponseDtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace EShop.API.Controllers
 {
@@ -141,7 +142,9 @@ namespace EShop.API.Controllers
 //}
 //DEDİKTEN SORNA LOGİN İŞLEMİNİ ARTIK GERçeekleştiriyoruz
 
-public async
+// public async Task<Shared.Dtos.ResponseDtos.ResponseDto<TokenDto>>IAuthtService.LoginAsyn(LoginDto loginDto){
+//     var result = await _authServices
+// }
 
 
  
