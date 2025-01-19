@@ -1,4 +1,5 @@
 using EShop.Services.Abstract;
+using EShop.Shared.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,24 @@ namespace EShop.API.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoryService _categoryManager;
+        private CategoryUpdateDto categoryUpdateDto;
 
         public CategoriesController(ICategoryService categoryManager)
         {
             _categoryManager = categoryManager;
         }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<IActionResult> Add(CategoryCreateDto categoryCreateDto)
+        {
+            var response = await _categoryManager.AddAsync(categoryCreateDto);
+            return StatusCode(response.StatusCode, response);
+        }
+
+
+
+
 
         [Authorize(Roles = "Admin")]
         [HttpGet("all")]
@@ -70,5 +84,14 @@ namespace EShop.API.Controllers
             var response = await _categoryManager.CountAsync(false);
             return StatusCode(response.StatusCode, response);
         }
+        [Authorize("Admin")]
+        [HttpDelete("harddelete/{id}")]
+        public async Task<IActionResult>HardDelete(int id)
+        {
+            var response = await _categoryManager.UpdateAsync(categoryUpdateDto);
+            return StatusCode(response.StatusCode, response);
+
+        }   
+        
     }
 }

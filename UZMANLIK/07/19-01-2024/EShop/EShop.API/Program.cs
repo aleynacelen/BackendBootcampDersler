@@ -69,6 +69,7 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 
 builder.Services.AddScoped<IAuthService, AuthManager>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
+builder.Services.AddScoped<IImageServices,ImageMenager>();
 
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
@@ -81,7 +82,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();

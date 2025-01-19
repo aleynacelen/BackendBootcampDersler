@@ -26,7 +26,7 @@ namespace EShop.Services.Concrete
         {
             try
             {
-                var isExists = await _categoryRepository.ExistsAsync(x => x.Name.Equals(categoryCreateDto.Name, StringComparison.CurrentCultureIgnoreCase));
+                var isExists = await _categoryRepository.ExistsAsync(x => x.Name.ToLower() == categoryCreateDto.Name.ToLower());
                 if (isExists)
                 {
                     return ResponseDto<CategoryDto>.Fail("Bu adda kategori mevcut!", StatusCodes.Status400BadRequest);

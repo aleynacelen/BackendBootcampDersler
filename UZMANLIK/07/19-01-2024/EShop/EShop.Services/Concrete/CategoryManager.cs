@@ -14,24 +14,38 @@ namespace EShop.Services.Concrete
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IGenericRepository<Category> _categoryRepository;
+        private readonly IImageService _imageManager;
 
-        public CategoryManager(IUnitOfWork unitOfWork, IMapper mapper)
+        public CategoryManager(IUnitOfWork unitOfWork, IMapper mapper, IImageService imageManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _categoryRepository = _unitOfWork.GetRepository<Category>();
+            _imageManager = imageManager;
         }
 
         public async Task<ResponseDto<CategoryDto>> AddAsync(CategoryCreateDto categoryCreateDto)
         {
             try
             {
-                var isExists = await _categoryRepository.ExistsAsync(x => x.Name.Equals(categoryCreateDto.Name, StringComparison.CurrentCultureIgnoreCase));
+                var isExists = await _categoryRepository.ExistsAsync(x => x.Name.ToLower() == categoryCreateDto.Name.ToLower());
                 if (isExists)
                 {
                     return ResponseDto<CategoryDto>.Fail("Bu adda kategori mevcut!", StatusCodes.Status400BadRequest);
                 }
                 var category = _mapper.Map<Category>(categoryCreateDto);
+                //Resim Yükleme
+                if (categoryCreateDto.Image == null)
+                {
+                    return ResponseDto<CategoryDto>.Fail("Kategori resmi boş olamaz!", StatusCodes.Status400BadRequest);
+                }
+                var imageResponse = await _imageManager.UploadImageAsync(categoryCreateDto.Image);
+                if (!imageResponse.IsSuccessful)
+                {
+                    return ResponseDto<CategoryDto>.Fail(imageResponse.Error, imageResponse.StatusCode);
+                }
+                category.ImageUrl = imageResponse.Data ?? "/images/default-category.png";
+
                 await _categoryRepository.AddAsync(category);
                 var result = await _unitOfWork.SaveAsync();
                 if (result < 1)
@@ -114,13 +128,20 @@ namespace EShop.Services.Concrete
 
         public async Task<ResponseDto<CategoryDto>> GetAsync(int id)
         {
-            var category = await _categoryRepository.GetAsync(x => x.Id == id);
-            if (category == null)
+            try
             {
-                return ResponseDto<CategoryDto>.Fail("Kategori bulunamadı!", StatusCodes.Status404NotFound);
+                var category = await _categoryRepository.GetAsync(x => x.Id == id);
+                if (category == null)
+                {
+                    return ResponseDto<CategoryDto>.Fail("Kategori bulunamadı!", StatusCodes.Status404NotFound);
+                }
+                var categoryDto = _mapper.Map<CategoryDto>(category);
+                return ResponseDto<CategoryDto>.Success(categoryDto, StatusCodes.Status200OK);
             }
-            var categoryDto = _mapper.Map<CategoryDto>(category);
-            return ResponseDto<CategoryDto>.Success(categoryDto, StatusCodes.Status200OK);
+            catch (Exception ex)
+            {
+                return ResponseDto<CategoryDto>.Fail(ex.Message, StatusCodes.Status500InternalServerError);
+            }
         }
 
         public async Task<ResponseDto<NoContent>> HardDeleteAsync(int id)
@@ -152,9 +173,34 @@ namespace EShop.Services.Concrete
             }
         }
 
-        public Task<ResponseDto<NoContent>> SoftDeleteAsync(int id)
+        public async Task<ResponseDto<NoContent>> SoftDeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var category = await _categoryRepository.GetAsync(x => x.Id == id);
+                if (category == null)
+                {
+                    return ResponseDto<NoContent>.Fail("Kategori bulunamadığı için silme ya da geri alma işlemi yapılamadı!", StatusCodes.Status404NotFound);
+                }
+                var hasProducts = await _unitOfWork.GetRepository<ProductCategory>().ExistsAsync(x => x.CategoryId == id);
+                if (hasProducts)
+                {
+                    return ResponseDto<NoContent>.Fail("Bu kategoriye ait ürünler olduğu için silme işlemi yapılamaz!", StatusCodes.Status400BadRequest);
+                }
+                category.IsDeleted = !category.IsDeleted;
+                if (category.IsDeleted) category.IsActive = false;
+                _categoryRepository.Update(category);
+                var result = await _unitOfWork.SaveAsync();
+                if (result < 1)
+                {
+                    return ResponseDto<NoContent>.Fail("Kategori silinmeye ya da geri alınmaya çalışışırken bir hata oluştu!", StatusCodes.Status500InternalServerError);
+                }
+                return ResponseDto<NoContent>.Success(StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return ResponseDto<NoContent>.Fail(ex.Message, StatusCodes.Status500InternalServerError);
+            }
         }
 
         public async Task<ResponseDto<NoContent>> UpdateAsync(CategoryUpdateDto categoryUpdateDto)
@@ -171,11 +217,12 @@ namespace EShop.Services.Concrete
                     return ResponseDto<NoContent>.Fail("Pasif kategoriler güncellenemez! Önce güncellemek istediğiniz kategoriyo Aktif duruma getirmeniz gerekir!", StatusCodes.Status400BadRequest);
                 }
 
-                var existsCategoryName = await _categoryRepository.ExistsAsync(x => x.Name.Equals(category.Name, StringComparison.CurrentCultureIgnoreCase));
+                var existsCategoryName = await _categoryRepository.ExistsAsync(x => x.Name.ToLower() == categoryUpdateDto.Name.ToLower());
                 if (existsCategoryName)
                 {
                     return ResponseDto<NoContent>.Fail("Bu adda kategori mevcut!", StatusCodes.Status400BadRequest);
                 }
+                _mapper.Map(categoryUpdateDto, category);
                 _categoryRepository.Update(category);
                 var result = await _unitOfWork.SaveAsync();
                 if (result < 1)
@@ -190,9 +237,33 @@ namespace EShop.Services.Concrete
             }
         }
 
-        public Task<ResponseDto<bool>> UpdateIsActiveAsync(int id)
+        public async Task<ResponseDto<bool>> UpdateIsActiveAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var category = await _categoryRepository.GetAsync(x => x.Id == id);
+                if (category == null)
+                {
+                    return ResponseDto<bool>.Fail("Kategori bulunamadığı için aktiflik durumu güncellenemedi!", StatusCodes.Status404NotFound);
+                }
+                var hasProducts = await _unitOfWork.GetRepository<ProductCategory>().ExistsAsync(x => x.CategoryId == id);
+                if (hasProducts)
+                {
+                    return ResponseDto<bool>.Fail("Bu kategoriye ait ürünler olduğu için pasif hale getirilemez!", StatusCodes.Status400BadRequest);
+                }
+                category.IsActive = !category.IsActive;
+                _categoryRepository.Update(category);
+                var result = await _unitOfWork.SaveAsync();
+                if (result < 1)
+                {
+                    return ResponseDto<bool>.Fail("Kategori aktiflik durumu güncellenirken bir hata oluştu!", StatusCodes.Status500InternalServerError);
+                }
+                return ResponseDto<bool>.Success(category.IsActive, StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return ResponseDto<bool>.Fail(ex.Message, StatusCodes.Status500InternalServerError);
+            }
         }
     }
 }
