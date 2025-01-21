@@ -2,6 +2,7 @@ using System;
 using EShop.Services.Abstract;
 using EShop.Shared.Dtos.ResponseDtos;
 using Microsoft.AspNetCore.Http;
+using Microsoft.VisualBasic;
 
 namespace EShop.Services.Concrete;
 
@@ -20,7 +21,27 @@ public class ImageMenager : IImageServices
     }
     public ResponseDto<bool> DeleteImage(string imageUrl)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if(string.IsNullOrWhiteSpace(imageUrl))
+            {
+                return ResponseDto<bool>.Fail("Resim yolu boş olmaz", StatusCodes.Status400BadRequest);
+
+            }
+            var FileName=Path.GetFileName(imageUrl);
+            var fileFullPath=Path.Combine(_imageFolderPath,FileName);
+            if (!File.Exists(fileFullPath))
+            {
+                return ResponseDto<bool>.Fail("Resim boş olmaz", StatusCodes.Status400BadRequest);
+            }
+            File.Delete(fileFullPath);
+            return ResponseDto<bool>.Success(StatusCodes.Status200OK);
+        }
+        catch (Exception ex)
+        {
+
+            return ResponseDto<bool>.Fail(ex.Message, StatusCodes.Status400BadRequest);
+        }
     }
 
     public async Task<ResponseDto<string>> UploadImageAsync(IFormFile image)

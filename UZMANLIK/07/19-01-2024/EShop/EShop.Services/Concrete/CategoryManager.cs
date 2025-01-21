@@ -14,9 +14,9 @@ namespace EShop.Services.Concrete
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IGenericRepository<Category> _categoryRepository;
-        private readonly IImageService _imageManager;
+        private readonly IImageServices _imageManager;
 
-        public CategoryManager(IUnitOfWork unitOfWork, IMapper mapper, IImageService imageManager)
+        public CategoryManager(IUnitOfWork unitOfWork, IMapper mapper, IImageServices imageManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -222,6 +222,16 @@ namespace EShop.Services.Concrete
                 {
                     return ResponseDto<NoContent>.Fail("Bu adda kategori mevcut!", StatusCodes.Status400BadRequest);
                 }
+                if (categoryUpdateDto.Image!=null)
+                {
+                    var imageResponse = await _imageManager.UploadImageAsync(categoryUpdateDto.Image);
+                }
+                // if(!imageResponse.IsSuccessful)
+                // {
+                //     return ResponseDto<NoContent>.Fail(imageResponse.Error, StatusCodes.Status400BadRequest);
+                // }
+                // category.ImageUrl=imageResponse.Data;
+                _imageManager.DeleteImage(category.ImageUrl);
                 _mapper.Map(categoryUpdateDto, category);
                 _categoryRepository.Update(category);
                 var result = await _unitOfWork.SaveAsync();
@@ -266,4 +276,4 @@ namespace EShop.Services.Concrete
             }
         }
     }
-}
+}  

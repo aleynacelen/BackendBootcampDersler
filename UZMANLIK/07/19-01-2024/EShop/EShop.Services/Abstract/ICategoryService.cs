@@ -19,3 +19,5 @@ namespace EShop.Services.Abstract
 
     }
 }
+//get all için overlood tasarslıyorum cunku mesela aktif olan tüm kayıtları getirmemiz gereken bir durumda olabilir
+//yeni bir kategori oluşturmak icin create dtoyu da oluşturduk
