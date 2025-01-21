@@ -277,3 +277,14 @@ namespace EShop.Services.Concrete
         }
     }
 }  
+//ıcategoyservice i implement ettik
+//bizimdtolarımız ve entıtlerımız arasında çalışacak
+//automapper paketi yüklememmiz sayesınde o nerneler yaratılacak
+//mapping klasörünü oluşturuyoruz
+//mapping profile adında bir class oluşruruyoruz
+//pricate readly IMapper ve Unitofeworku dahil etmemiz gerekiyor
+//addasync de try cathc yapısıyla çalışacağız
+//katecory repossitory her yerde kullanacağım için yukarıda readyonly ıle tanımlayacağız
+//predicate filtreyi belli ediyor
+//equals categorydto.Name,strincomparasion.CurrentCultureIgnone
+//is aktidlli olan getallasync için (x=>x.IsActive), vermişlr

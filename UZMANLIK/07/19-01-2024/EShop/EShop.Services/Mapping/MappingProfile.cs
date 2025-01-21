@@ -17,3 +17,8 @@ namespace EShop.Services.Mapping
         }
     }
 }
+//ctor dedik ve constracterın ıcınde gerekli neyin neye dödüştürülüceğini vereceğiz
+//program csde yaratılma kodlarını yazıyouruz
+//bıilder.Services.AddAutomAPPET(TYPEOF(MAPPİNGPROFİLE))//ARTIK automapper kullanıma hazır
+
+

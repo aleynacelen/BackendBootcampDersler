@@ -21,3 +21,6 @@ namespace EShop.Services.Abstract
 }
 //get all için overlood tasarslıyorum cunku mesela aktif olan tüm kayıtları getirmemiz gereken bir durumda olabilir
 //yeni bir kategori oluşturmak icin create dtoyu da oluşturduk
+//deltede oluştrduk
+//hard delete ve soft delete de ekledik ve  adet saydırmak için countu ve sadece aktfleri de saydırabılcegımız bır overloodunu da ekledik
+//ve servis katmanında bunun somutunu yazdık 
