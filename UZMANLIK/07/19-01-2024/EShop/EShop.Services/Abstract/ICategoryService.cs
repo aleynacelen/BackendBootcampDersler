@@ -24,3 +24,4 @@ namespace EShop.Services.Abstract
 //deltede oluştrduk
 //hard delete ve soft delete de ekledik ve  adet saydırmak için countu ve sadece aktfleri de saydırabılcegımız bır overloodunu da ekledik
 //ve servis katmanında bunun somutunu yazdık 
+// buradakı işlerleri hallettikten sonra cateegori için controller oluşutduk

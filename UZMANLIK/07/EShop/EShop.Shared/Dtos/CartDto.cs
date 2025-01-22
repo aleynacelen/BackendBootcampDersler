@@ -18,7 +18,7 @@ public class CartDto
 
     public int TotalItems => CartItems == null ? 0 : CartItems.Count();
 }
-
+//burada  cart hakkında bilgileirmizi yazdık
 
 
 

@@ -115,3 +115,12 @@ namespace EShop.API.Controllers
         }
     }
 }
+//metodları mutlaka belitmeliyiz
+//from query isActive ==true
+//query kullanıcağımız için yazdık
+//hiçbir parametre almayan versiyonunu da yazıyouruz 
+//hangi endpointtin login olma şartı varsa authorize filtreini ekleyeceğim
+//nasıl login olacağım
+//autorozaion sekmesinde bearerı secıyprum ve login olduğumda kı token ı yazıyorum oraya 
+//role ismi olarak da admını atıyorum
+//ide yazıyorsa içi de id olmalı
