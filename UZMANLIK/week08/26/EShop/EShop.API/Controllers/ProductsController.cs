@@ -1,0 +1,102 @@
+using EShop.Services.Abstract;
+using EShop.Shared.ControllerBases;
+using EShop.Shared.Dtos;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EShop.API.Controllers
+{
+    [Route("api/products")]
+    [ApiController]
+    public class ProductsController : CustomControllerBase
+    {
+        private readonly IProductService _productManager;
+
+        public ProductsController(IProductService productManager)
+        {
+            _productManager = productManager;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(ProductCreateDto productCreateDto)
+        {
+            var response = await _productManager.AddAsync(productCreateDto);
+            return CreateResult(response);
+        }
+        [HttpPut]
+        public async Task<IActionResult> Update(ProductUpdateDto productUpdateDto)
+        {
+            var response = await _productManager.UpdateAsync(productUpdateDto);
+            return CreateResult(response);
+        }
+        [HttpDelete("Harddelete/{id}")]
+        public async Task<IActionResult> HardDelete(int id)
+        {
+            var response = await _productManager.HardDeleteAsync(id);
+            return CreateResult(response);
+        }
+        [HttpDelete("Softdelete/{id}")]
+        public async Task<IActionResult> SoftDelete(int id)
+        {
+            var response = await _productManager.SoftDeleteAsync(id);
+            return CreateResult(response);
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var response = await _productManager.GetAsync(id);
+            return CreateResult(response);
+        }
+        [HttpGet(" get/withcategories/{id}")]
+        public async Task<IActionResult> GetWithCategories(int id)
+        {
+            var response = await _productManager.GetWithCategoriesAsync(id);
+            return CreateResult(response);
+        }
+        [HttpGet(" get/all/active")]
+        public async Task<IActionResult> GetAll([FromQuery]bool isActive)
+        {
+            var response = await _productManager.GetAllAsync(isActive);
+            return CreateResult(response);
+        }
+        [HttpGet(" get/all/withcategories")]
+        public async Task<IActionResult> GetAllWithCategories()
+        {
+            var response = await _productManager.GetAllWithCategoriesAsync();
+            return CreateResult(response);
+        }
+        [HttpGet(" get/all/byCategory")]
+        public async Task<IActionResult> GetAllByCategory([FromQuery] int categoryId)
+        {
+            var response = await _productManager.GetByCategoryAsync(categoryId);
+            return CreateResult(response);
+        }
+        [HttpGet("count")]
+        public async Task<IActionResult> GetCount()
+        {
+            var response = await _productManager.CountAsync();
+            return CreateResult(response);
+        }
+        [HttpGet("count/active")]
+        public async Task<IActionResult> GetActiveCount()
+        {
+            var response = await _productManager.CountAsync(true);
+            return CreateResult(response);
+        }
+        [HttpGet("count/passive")]
+        public async Task<IActionResult> GetPassiveCount()
+        {
+            var response = await _productManager.CountAsync(false);
+            return CreateResult(response);
+        }
+        [HttpPut("updateisactive/{id}")]
+        public async Task<IActionResult> UpdateIsActiveCount(int id)
+        {
+            var response = await _productManager.UpdateIsActiveAsync(id);
+            return CreateResult(response); 
+        }
+
+
+
+    }
+}

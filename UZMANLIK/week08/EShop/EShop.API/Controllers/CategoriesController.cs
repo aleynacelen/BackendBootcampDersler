@@ -115,5 +115,3 @@ namespace EShop.API.Controllers
         }
     }
 }
-//CATEGORİSİ OLMAYAN ÜRÜN KAYDETME SORUNUMUZ VAR
-

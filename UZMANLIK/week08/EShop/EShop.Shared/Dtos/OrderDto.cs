@@ -3,7 +3,7 @@ using EShop.Shared.ComplexTypes;
 
 namespace EShop.Shared.Dtos;
 
-public class    OrderDto
+public class OrderDto
 {
     public int Id { get; set; }
     public DateTime CreatedDate { get; set; }

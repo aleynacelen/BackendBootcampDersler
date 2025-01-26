@@ -139,9 +139,8 @@ public class OrderManager : IOrderService
     {
         try
         {
-
             var orders = await _orderRepository.GetAllAsync(
-                predicate: x =>  x.ApplicationUserId == applicationUserId,
+                predicate: x => x.ApplicationUserId == applicationUserId,
                 orderBy: x => x.OrderByDescending(x => x.CreateDate),
                 includes: query => query
                                 .Include(x => x.ApplicationUser)
@@ -164,10 +163,9 @@ public class OrderManager : IOrderService
     {
         try
         {
-            startDate= startDate == null ?  new DateTime(1900,1,1): startDate;
-
+            startDate = startDate == null ? new DateTime(1900, 1, 1) : startDate;
             var orders = await _orderRepository.GetAllAsync(
-                predicate: x => x.CreateDate >= startDate && x.CreateDate<= endDate,
+                predicate: x => x.CreateDate >= startDate && x.CreateDate <= endDate,
                 orderBy: x => x.OrderByDescending(x => x.CreateDate),
                 includes: query => query
                                 .Include(x => x.ApplicationUser)
@@ -190,24 +188,20 @@ public class OrderManager : IOrderService
     {
         try
         {
-            var orders = await _orderRepository.GetAsync(
-                predicate:x=>x.Id==id,
-                includes: query=>query
-                .Include(x=>x.ApplicationUser)
-                .Include(x=>x.OrderItems)
-                .ThenInclude(y=>y.Product)
-                
-
+            var order = await _orderRepository.GetAsync(
+                predicate: x => x.Id == id,
+                includes: query => query
+                            .Include(x => x.ApplicationUser)
+                            .Include(x => x.OrderItems)
+                            .ThenInclude(y => y.Product)
             );
-        if (orders==null)
-        {
-            return ResponseDto<OrderDto>.Fail("ilgili  bulunamadı",StatusCodes.Status400BadRequest);
+            if(order==null)
+            {
+                return ResponseDto<OrderDto>.Fail("İlgili sipariş bulunamadı",StatusCodes.Status404NotFound);
+            }
+            var orderDto = _mapper.Map<OrderDto>(order);
+            return ResponseDto<OrderDto>.Success(orderDto, StatusCodes.Status200OK);
         }
-
-        var orderDto = _mapper.Map<OrderDto>(orders);
-        return ResponseDto<OrderDto>.Success(orderDto,StatusCodes.Status200OK);
-        }
-        
         catch (Exception ex)
         {
             return ResponseDto<OrderDto>.Fail(ex.Message, StatusCodes.Status500InternalServerError);
