@@ -12,5 +12,7 @@ namespace EShop.API.Controllers
         {
             _productService = productService;
         }
+        private readonly IProductService _productService;
+        public
     }
 }
