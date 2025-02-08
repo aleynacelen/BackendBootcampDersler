@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace EShop.Shared.Dtos;
 
@@ -6,9 +7,11 @@ public class OrderItemDto
 {
     public int Id { get; set; }
     public int OrderId { get; set; }
-    public OrderDto Order { get; set; }=new OrderDto();
+  
     public int ProductId { get; set; }
-    public ProductDto Product { get; set; }=new ProductDto();
+    // [JsonIgnore]
+    // public ProductDto Product { get; set; } = new ProductDto(); // This is not needed döngüye girebilir.
+    public string ?ProductName { get; set; }// Mapping Profile da bunun için ilemler yaparak içini dolduracağız.
     public int Quantity { get; set; }
     public decimal UnitPrice { get; set; }
     public decimal TotalPrice => Quantity * UnitPrice;

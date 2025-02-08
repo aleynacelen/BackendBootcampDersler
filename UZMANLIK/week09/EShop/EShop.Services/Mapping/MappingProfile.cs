@@ -44,13 +44,23 @@ namespace EShop.Services.Mapping
             CreateMap<Order, OrderDto>()
                 .ForMember(dest => dest.ApplicationUser, opt => opt.MapFrom(src => src.ApplicationUser))
                 .ForMember(dest => dest.OrderItems, opt => opt.MapFrom(src => src.OrderItems)).ReverseMap();
-            CreateMap<Order, OrderCreateDto>()
-                .ForMember(dest => dest.OrderItems, opt => opt.MapFrom(src => src.OrderItems)).ReverseMap();
+
+
+            CreateMap<OrderCreateDto, Order>()
+                .ForMember(dest => dest.OrderItems, opt => opt.MapFrom(src => src.OrderItems));
+
             #endregion
 
             #region OrderItem
-                CreateMap<OrderItem, OrderItemDto>()
-                    .ForMember(dest=>dest.Product, opt=>opt.MapFrom(src=>src.Product)).ReverseMap();
+            CreateMap<OrderItem, OrderItemDto>()
+                .ForMember(dest => dest.ProductName, opt=> opt.MapFrom(src => src.Product!.Name));
+            CreateMap<OrderItemDto, OrderItem>();
+            CreateMap<OrderItenCreateDto, OrderItem>();
+                
+            #endregion
+            #region ApplicationUser
+            CreateMap<ApplicationUser, ApplicationUserDto>().ReverseMap();
+            
             #endregion
         }
     }

@@ -47,6 +47,12 @@ public class OrderManager : IOrderService
 
             }
             var order = _mapper.Map<Order>(orderCreateDto);
+            // Order order = new(orderCreateDto.ApplicationUserId, orderCreateDto.Address, orderCreateDto.City)
+            // {
+            //     OrderItems = orderCreateDto.OrderItems.Select(
+            //         x =>
+            //         new OrderItem(x.ProductId, x.UnitPrice, x.Quantity)).ToList()
+            // };
             //Fake ödeme operasyonunu ekleyeceğiz.
             await _orderRepository.AddAsync(order);
             await _unitOfWork.SaveAsync();
@@ -195,9 +201,9 @@ public class OrderManager : IOrderService
                             .Include(x => x.OrderItems)
                             .ThenInclude(y => y.Product)
             );
-            if(order==null)
+            if (order == null)
             {
-                return ResponseDto<OrderDto>.Fail("İlgili sipariş bulunamadı",StatusCodes.Status404NotFound);
+                return ResponseDto<OrderDto>.Fail("İlgili sipariş bulunamadı", StatusCodes.Status404NotFound);
             }
             var orderDto = _mapper.Map<OrderDto>(order);
             return ResponseDto<OrderDto>.Success(orderDto, StatusCodes.Status200OK);
