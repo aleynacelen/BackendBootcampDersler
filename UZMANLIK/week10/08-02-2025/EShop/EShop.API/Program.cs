@@ -58,9 +58,8 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig?.Secret ?? ""))
     };
 });
+
 builder.Services.Configure<EmailConfig>(builder.Configuration.GetSection("EmailConfig"));
-
-
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -71,6 +70,7 @@ builder.Services.AddScoped<IProductService, ProductManager>();
 builder.Services.AddScoped<ICartService, CartManager>();
 builder.Services.AddScoped<IOrderService, OrderManager>();
 builder.Services.AddScoped<IImageService, ImageManager>();
+builder.Services.AddScoped<IEmailService, EmailManager>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 

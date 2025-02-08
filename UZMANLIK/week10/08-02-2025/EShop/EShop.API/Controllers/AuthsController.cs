@@ -36,7 +36,24 @@ namespace EShop.API.Controllers
             var result = await _authService.RegisterAsync(registerDto);
             return StatusCode(result.StatusCode, result);
         }
-
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDto changePasswordDto)
+        {
+            var result = await _authService.ChangePasswordAsync(changePasswordDto);
+            return StatusCode(result.StatusCode, result); 
+        }
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordDto forgotPasswordDto)
+        {
+            var result = await _authService.ForgotPasswordAsync(forgotPasswordDto);
+            return StatusCode(result.StatusCode, result);
+        }
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
+        {
+            var result = await _authService.ResetPasswordAsync(resetPasswordDto);
+            return StatusCode(result.StatusCode, result);
+        }
 
     }
 }
