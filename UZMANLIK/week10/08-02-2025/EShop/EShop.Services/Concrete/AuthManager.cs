@@ -169,7 +169,7 @@ public class AuthManager : IAuthService
             {
                 return ResponseDto<NoContent>.Fail("Kullanıcı bulunamadı", StatusCodes.Status404NotFound);
             }
-            var result = await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token!, resetPasswordDto.newPassword!);
+            var result = await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token!, resetPasswordDto.Password!);
             if (!result.Succeeded)
             {
                 return ResponseDto<NoContent>.Fail("Şifre sıfırlama işlemi başarısız", StatusCodes.Status400BadRequest);
