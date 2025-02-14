@@ -1,10 +1,12 @@
 using System.Data;
+using System.Data.SqlClient;
+using Dapper;
 
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
-// builder.Services.AddControllersWithViews();
-// builder.Services.AddScoped<IDbConnection>(option => new SqlConnection(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddControllersWithViews();
+ builder.Services.AddScoped<IDbConnection>(option => new SqlConnection(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
 
