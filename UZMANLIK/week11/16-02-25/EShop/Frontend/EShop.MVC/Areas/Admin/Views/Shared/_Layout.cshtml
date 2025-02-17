@@ -6,7 +6,8 @@
     @await Html.PartialAsync("LayoutPartials/_HeadPartial")
 
     @await Html.PartialAsync("LayoutPartials/_StylesPartial")
-    
+
+    @RenderSection("StylesSection", false)
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -31,6 +32,8 @@
 
     <!-- ./wrapper -->
     @await Html.PartialAsync("LayoutPartials/_ScriptsPartial")
+
+    @RenderSection("ScriptsSection", false)
 
 </body>
 

@@ -7,8 +7,8 @@ namespace EShop.MVC.Services.Interfaces;
 public interface ICategoryService
 {
     Task<ResponseModel<List<CategoryModel>>> GetAllAsync();
-    Task<ResponseModel<List<CategoryModel>>> GetAllActivesAsync(bool isActive);
-    Task<ResponseModel<List<CategoryModel>>> GetAllAPassivesAsync(bool isActive);
+    Task<ResponseModel<List<CategoryModel>>> GetAllActivesAsync();
+    Task<ResponseModel<List<CategoryModel>>> GetAllPassivesAsync();
     Task<ResponseModel<CategoryModel>> GetAsync(int id);
     Task<ResponseModel<int>> CountAsync();
     Task<ResponseModel<int>> CountAsync(bool isActive);
@@ -18,5 +18,4 @@ public interface ICategoryService
     Task<ResponseModel<NoContent>> HardDeleteAsync(int id);
     Task<ResponseModel<NoContent>> SoftDeleteAsync(int id);
     Task<ResponseModel<bool>> UpdateIsActive(int id);
-    Task GetAllActivesAsync();
 }
