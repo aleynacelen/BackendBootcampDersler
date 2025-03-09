@@ -51,11 +51,20 @@ namespace EShop.MVC.Areas.Admin.Controllers
             var response = await _productService.SoftDeleteAsync(id);
             return Json(new { isSuccessful = response.IsSuccessful, error = response.Error });
         }
-        [NonAction]
-        private async Task<List<SelectListItem>> GenerateCatgeoryList()
+        public async Task<IActionResult> Create()
         {
-            var categories = (await _categoryService.GetAllActivesAsync) 
+            var response = await _categoryService.GetAllAsync();
+            ViewBag.Categories = new SelectList(response.Data, "Id", "Name");
+            return View();
         }
+        public async Task<IActionResult> Edit(int id)
+        {
+            var response = await _productService.GetByIdAsync(id);
+            var responseCategories = await _categoryService.GetAllAsync();
+            ViewBag.Categories = new SelectList(responseCategories.Data, "Id", "Name");
+            return View(response.Data);
+        }
+        
 
     }
 }
