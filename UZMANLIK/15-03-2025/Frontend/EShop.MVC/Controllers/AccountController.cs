@@ -9,10 +9,11 @@ namespace EShop.MVC.Controllers;
 [Authorize]
 public class AccountController : Controller
 {
+    private readonly IOrderService _orderService;
     private readonly IUserService _userService;
     private readonly IToastNotification _toastNotification;
     private readonly IAuthService _authService;
-
+   
     public AccountController(IUserService userService, IToastNotification toastNotification, IAuthService authService)
     {
         _userService = userService;
@@ -28,6 +29,21 @@ public class AccountController : Controller
         {
             _toastNotification.AddErrorToastMessage(response.Error ?? "Profil bilgileri getirilirken bir hata oluştu.");
             return RedirectToAction("Index", "Home");
+            var UserUpdateModel = new UserUpdateModel
+            {
+                FirstName = response.Data.FirstName,
+                LastName = response.Data.LastName,
+                Email = response.Data.Email,
+                PhoneNumber = response.Data.PhoneNumber
+            };
+        }else{
+            var UserUpdateModel = new UserUpdateModel
+            {
+                FirstName = response.Data.FirstName,
+                LastName = response.Data.LastName,
+                Email = response.Data.Email,
+                PhoneNumber = response.Data.PhoneNumber
+            };
         }
 
         return View(response.Data);
@@ -189,5 +205,12 @@ public class AccountController : Controller
     {
         await _authService.LogoutAsync();
         return RedirectToAction("Index", "Home");
+    }
+    [Authorize]
+    [HttpGet]
+    public async Task<IActionResult> Orders()
+    {
+        var response = await _orderService.GetAllMyAsync();
+       return View();
     }
 }
