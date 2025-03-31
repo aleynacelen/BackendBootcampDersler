@@ -59,5 +59,9 @@ namespace EShop.API.Controllers
             var response = await _cartService.ClearCartAsync(GetUserId());
             return CreateResult(response);
         }
+        public async Task<IActionResult> Clear()
+        {
+            var response = await _cartService.ClearCartAsync(GetUserId());
+        }
     }
 }
