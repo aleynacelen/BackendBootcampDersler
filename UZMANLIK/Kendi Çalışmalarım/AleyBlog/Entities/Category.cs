@@ -2,9 +2,9 @@ using System;
 
 namespace Entities;
 
-public class Category
+public class Category:BaseEntity
 {
-    public int Id { get; set; }
+    
     public string? CategoryName { get; set; }
     public List<Post> ?Posts{get; set;}
     
