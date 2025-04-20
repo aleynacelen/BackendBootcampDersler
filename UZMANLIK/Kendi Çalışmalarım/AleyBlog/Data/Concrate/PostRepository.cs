@@ -2,6 +2,7 @@ using System;
 using Data.Abstract;
 using Data.Context;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Concrate;
 
@@ -20,23 +21,27 @@ public class PostRepository : IPost
         
     }
 
-    public Task DeleteAsync(Post entity)
+    public async Task DeleteAsync(Post entity)
     {
-        throw new NotImplementedException();
+        _context.Posts.Remove(entity);
+        await _context.SaveChangesAsync();
     }
 
-    public Task<IEnumerable<Post>> GetAllAsync()
+    public async Task<IEnumerable<Post>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return await _context.Posts.ToListAsync();
+
     }
 
-    public Task<Post> GetByIdAsync(int id)
+    public async Task<Post> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Posts.FindAsync();
     }
 
-    public Task UpdateAsync(Post entity)
+    public async Task UpdateAsync(Post entity)
     {
-        throw new NotImplementedException();
+         _context.Posts.Update(entity);
+         return await _context.Posts.Add();
+        
     }
 }
