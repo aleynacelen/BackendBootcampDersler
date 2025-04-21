@@ -41,7 +41,7 @@ public class PostRepository : IPost
     public async Task UpdateAsync(Post entity)
     {
          _context.Posts.Update(entity);
-         return await _context.Posts.Add();
+         
         
     }
 }
