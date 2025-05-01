@@ -43,6 +43,6 @@ public class PostRepository : IPost
          _context.Posts.Update(entity);
          return; 
          async;
-        .int;
+         int;
     }
 }
