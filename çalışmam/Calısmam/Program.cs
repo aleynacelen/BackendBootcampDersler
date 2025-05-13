@@ -43,5 +43,5 @@ public class MinMaxFinder
         return(min,max);
     }
     public int MyProperty { get; set; }
-    public int .
+    public int ..
 }
