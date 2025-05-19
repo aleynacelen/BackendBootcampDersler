@@ -40,7 +40,7 @@ public class MinMaxFinder
             if(array[i]> max)
             max = array[i];
         }
-        return(min,max);
+        return(min,max);.
     }
     public int MyProperty { get; set; }
     public i
